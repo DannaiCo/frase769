@@ -2,8 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Día de la Independencia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+  <title>Amor y Amistad</title>
+
+  <!-- Tipografía Fredoka -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+
   <style>
     html, body {
       margin: 0;
@@ -11,7 +16,7 @@
       overflow: hidden;
       width: 769px;
       height: 192px;
-      font-family: 'Open Sans', sans-serif;
+      font-family: "Fredoka", sans-serif;
     }
 
     .contenedor {
@@ -30,25 +35,26 @@
       z-index: 0;
     }
 
-   .frase {
-  position: absolute;
-  top: 68%;
-  left: 52%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 350px;
-  text-align: center;
-  font-size: 35px;
-  line-height: 1.1;
-  font-weight: bold;
-  color: #c81a0a;
-  font-family: 'Berkshire Swash', cursive;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-}
+    /* Texto de las frases con Fredoka */
+    .frase {
+      position: absolute;
+      top: 68%;
+      left: 52%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 350px;
+      text-align: center;
+      font-size: 35px;
+      line-height: 1.1;
+      font-weight: 500;
+      color: #f7ccbc;
+      font-family: "Fredoka", sans-serif;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
 
     .mostrar {
       opacity: 1;
@@ -66,25 +72,27 @@
   </div>
 
   <script>
-    const url = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiTz2mTVNjnXdT1_pQ3AQckymfXG6OP4Vv9IHV3nb8nruhTvcUnPiBAnIJZkb4OpyDF-87GwNdLKayKSWJqXsCXxsY-jYeOBFvKkvXYeQFsv5Q1mvkt8dztXrj_Jszqwz4DJdBtNH6cZdxbAZv8grIfYfJxgOblRK-ApPzxC_L9_Z4nT3AsHfqwzjkj4sz9m9zvhQClVEeJuXe6Cz0p_G2dUPAzw-geCkRdY8ewyKVEeUBjLGUK0JBBnWEx-HxIthdPcR0ETS336fyD0b7AVzBefr3GSA&lib=MKhgrG4irYk2znH0kzJcOsp-pvmjiA198";
+    const url = "https://script.google.com/macros/s/AKfycbwB1hIXl_1H62TMw1yXs-klHXdAFqfDXLKjSs4_EbtyhV_-z6Oe_xDA2V5EtKGNiGPAKw/exec";
 
     fetch(url)
       .then(res => res.json())
       .then(frases => {
         const el = document.getElementById("frase");
         let i = 0;
-function mostrarFrase() {
-  el.classList.remove("mostrar");
-  setTimeout(() => {
-    let texto = frases[i].toLowerCase();
-    el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
-    el.classList.add("mostrar");
-    i = (i + 1) % frases.length;
-  }, 500);
-}
+        function mostrarFrase() {
+          el.classList.remove("mostrar");
+          setTimeout(() => {
+            let texto = frases[i].toLowerCase();
+            el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
+            el.classList.add("mostrar");
+            i = (i + 1) % frases.length;
+          }, 500);
+        }
         mostrarFrase();
         setInterval(mostrarFrase, 8000);
       });
   </script>
 </body>
 </html>
+
+
