@@ -72,27 +72,35 @@
   </div>
 
   <script>
-    const url = "https://script.google.com/macros/s/AKfycbwB1hIXl_1H62TMw1yXs-klHXdAFqfDXLKjSs4_EbtyhV_-z6Oe_xDA2V5EtKGNiGPAKw/exec";
+  const url = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiQGpJV4w1hZqhfJBMvtp3nh-IvO7Enpmfi-NuDvgjmE3g5tShtQyIPpROXDeEdRPVg66pP9jBgTaNMUN_aiWpTEKE8md5Xuda25qKcj-ITSRwCw5qvF_OO1MYp0bSr-k8SB1N8uuxy4cK7n96McNbz5SuSVlSWwfONs_MHuat_WuqK6_32XH_0HT1SRUAesrKvFREVYPLsEwdGVFaBNaXJQo60JSTu6d82h1I7R3Qb3MIiCrAfuRq_rpirSwXKuTS8VtaCDNtaELWSPJtCjGNGX-R2XpDJduQnxJy5&lib=MKcE4wsyGQpW6RnsP8GhHoaeEHa1C_Htb";
 
-    fetch(url)
-      .then(res => res.json())
-      .then(frases => {
-        const el = document.getElementById("frase");
-        let i = 0;
-        function mostrarFrase() {
-          el.classList.remove("mostrar");
-          setTimeout(() => {
-            let texto = frases[i].toLowerCase();
-            el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
-            el.classList.add("mostrar");
-            i = (i + 1) % frases.length;
-          }, 500);
-        }
-        mostrarFrase();
-        setInterval(mostrarFrase, 8000);
-      });
-  </script>
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const frases = data.mensajes; // 👈 aquí está el arreglo correcto
+      const el = document.getElementById("frase");
+
+      function mostrarFrase() {
+        const aleatoria = frases[Math.floor(Math.random() * frases.length)];
+        let texto = aleatoria.toLowerCase();
+        el.innerText = texto.charAt(0).toUpperCase() + texto.slice(1);
+        el.classList.add("mostrar");
+      }
+
+      mostrarFrase();
+
+      setInterval(() => {
+        el.classList.remove("mostrar");
+        setTimeout(mostrarFrase, 500); // espera a que desaparezca antes de mostrar la siguiente
+      }, 5000);
+    })
+    .catch(err => {
+      console.error("Error cargando frases:", err);
+      document.getElementById("frase").innerText = "Error al cargar frase";
+    });
+</script>
 </body>
 </html>
+
 
 
